@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- LANE 2: JUNK. Archive + mark read. Import AFTER Lane 1.
+     Every rule carries a doesNotHaveTheWord guard so urgent mail is never swept.
+     Archive is reversible: mail stays in All Mail and stays searchable. -->
+<feed xmlns='http://www.w3.org/2005/Atom' xmlns:apps='http://schemas.google.com/apps/2006'>
+<title>Gmail Cleanup Kit - Lane 2: Junk</title>
+
+<entry><category term='filter'></category><title>Promotions - archive</title>
+<apps:property name='hasTheWord' value='category:promotions'/>
+<apps:property name='doesNotHaveTheWord' value='is:starred OR invoice OR receipt OR "order confirmation" OR "past due" OR "payment failed" OR "security alert" OR interview OR "your application" OR "thank you for applying"'/>
+<apps:property name='label' value='📰 Newsletters'/>
+<apps:property name='shouldArchive' value='true'/>
+<apps:property name='shouldMarkAsRead' value='true'/>
+</entry>
+
+<entry><category term='filter'></category><title>Social - archive</title>
+<apps:property name='hasTheWord' value='category:social'/>
+<apps:property name='doesNotHaveTheWord' value='is:starred OR invoice OR receipt OR "security alert" OR interview OR "your application"'/>
+<apps:property name='shouldArchive' value='true'/>
+<apps:property name='shouldMarkAsRead' value='true'/>
+</entry>
+
+<entry><category term='filter'></category><title>Forums - archive</title>
+<apps:property name='hasTheWord' value='category:forums'/>
+<apps:property name='doesNotHaveTheWord' value='is:starred OR invoice OR receipt OR "security alert" OR interview OR "your application"'/>
+<apps:property name='shouldArchive' value='true'/>
+<apps:property name='shouldMarkAsRead' value='true'/>
+</entry>
+
+<entry><category term='filter'></category><title>Job alert digests - archive</title>
+<!-- Job ALERTS are noise. Job APPLICATIONS are precious. Lane 1 catches those; do not merge these. -->
+<apps:property name='hasTheWord' value='from:(jobalert.indeed.com OR match.indeed.com OR alert.indeed.com OR ziprecruiter.com OR jobs-listings.linkedin.com OR glassdoor.com OR jobcase.com OR talent.com)'/>
+<apps:property name='label' value='💼 Job Search/Job Alerts'/>
+<apps:property name='shouldArchive' value='true'/>
+<apps:property name='shouldMarkAsRead' value='true'/>
+</entry>
+
+<entry><category term='filter'></category><title>Updates remainder - archive whatever no label claimed</title>
+<!-- CRITICAL: the has:nouserlabels and -is:important guards are load-bearing.
+     Gmail's Updates category hides invoices, bank alerts, security alerts, flight
+     confirmations and legal notices alongside the noise. Never blanket-archive it. -->
+<apps:property name='hasTheWord' value='category:updates has:nouserlabels -is:starred -is:important'/>
+<apps:property name='shouldArchive' value='true'/>
+<apps:property name='shouldMarkAsRead' value='true'/>
+</entry>
+
+</feed>

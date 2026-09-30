@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- LANE 1: PROTECT. Label only, never archive. Import these FIRST.
+     These run before any junk sweep so important mail is tagged and identifiable.
+     EDIT the from:() lists to match your own banks, tools and clients. -->
+<feed xmlns='http://www.w3.org/2005/Atom' xmlns:apps='http://schemas.google.com/apps/2006'>
+<title>Gmail Cleanup Kit - Lane 1: Protect</title>
+
+<entry><category term='filter'></category><title>Security</title>
+<apps:property name='hasTheWord' value='from:(accounts.google.com) OR subject:("security alert" OR "new sign-in" OR "password reset" OR "verification code" OR "2-step verification" OR "suspicious activity" OR "unusual activity")'/>
+<apps:property name='label' value='🔐 Security'/>
+<apps:property name='shouldNeverSpam' value='true'/>
+<apps:property name='shouldAlwaysMarkAsImportant' value='true'/>
+</entry>
+
+<entry><category term='filter'></category><title>Banking</title>
+<!-- EDIT: replace with your own banks / card issuers -->
+<apps:property name='hasTheWord' value='from:(YOURBANK.com OR YOURCARD.com OR paypal.com OR stripe.com)'/>
+<apps:property name='label' value='💰 Money/Banking'/>
+<apps:property name='shouldNeverSpam' value='true'/>
+</entry>
+
+<entry><category term='filter'></category><title>Receipts</title>
+<apps:property name='hasTheWord' value='subject:(receipt OR "order confirmation" OR "your order" OR "payment received" OR "payment confirmation")'/>
+<apps:property name='label' value='💰 Money/Receipts'/>
+<apps:property name='shouldNeverSpam' value='true'/>
+</entry>
+
+<entry><category term='filter'></category><title>Invoices</title>
+<apps:property name='hasTheWord' value='subject:(invoice OR "invoice due" OR "payment reminder" OR "past due" OR "amount due" OR "payment failed")'/>
+<apps:property name='label' value='💰 Money/Invoices'/>
+<apps:property name='shouldNeverSpam' value='true'/>
+<apps:property name='shouldAlwaysMarkAsImportant' value='true'/>
+</entry>
+
+<entry><category term='filter'></category><title>Job applications - ATS senders</title>
+<apps:property name='hasTheWord' value='from:(hire.lever.co OR greenhouse.io OR myworkday.com OR ashbyhq.com OR smartrecruiters.com OR icims.com OR workable.com OR jobvite.com OR breezy.hr OR taleo.net OR bamboohr.com OR recruitee.com OR rippling.com OR paylocity.com)'/>
+<apps:property name='label' value='💼 Job Search/Applications'/>
+<apps:property name='shouldNeverSpam' value='true'/>
+<apps:property name='shouldAlwaysMarkAsImportant' value='true'/>
+</entry>
+
+<entry><category term='filter'></category><title>Job applications - subject match</title>
+<apps:property name='hasTheWord' value='subject:("thank you for applying" OR "thanks for applying" OR "application received" OR "your application" OR "thanks for your interest" OR "application update" OR "application status")'/>
+<apps:property name='label' value='💼 Job Search/Applications'/>
+<apps:property name='shouldNeverSpam' value='true'/>
+<apps:property name='shouldAlwaysMarkAsImportant' value='true'/>
+</entry>
+
+<entry><category term='filter'></category><title>Interviews</title>
+<apps:property name='hasTheWord' value='subject:(interview OR "phone screen" OR "next steps" OR "hiring team" OR "offer letter")'/>
+<apps:property name='label' value='💼 Job Search/Interviews'/>
+<apps:property name='shouldNeverSpam' value='true'/>
+<apps:property name='shouldAlwaysMarkAsImportant' value='true'/>
+</entry>
+
+<entry><category term='filter'></category><title>Tools and infra</title>
+<!-- EDIT: replace with the services you actually run on -->
+<apps:property name='hasTheWord' value='from:(github.com OR vercel.com OR cloudflare.com OR namecheap.com OR zoom.us OR openai.com OR anthropic.com)'/>
+<apps:property name='label' value='🛠 Tools &amp; Infra'/>
+<apps:property name='shouldNeverSpam' value='true'/>
+</entry>
+
+</feed>

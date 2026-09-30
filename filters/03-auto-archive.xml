@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- LANE 3: OPTIONAL. Label-and-archive the high-volume-but-not-urgent categories
+     so your inbox does not slowly rebuild. Each guard lets the urgent ones through.
+     Skip this lane if you prefer to see these in your inbox. -->
+<feed xmlns='http://www.w3.org/2005/Atom' xmlns:apps='http://schemas.google.com/apps/2006'>
+<title>Gmail Cleanup Kit - Lane 3: Auto-archive</title>
+
+<entry><category term='filter'></category><title>Auto-archive banking</title>
+<!-- EDIT the from:() list. Deliberately EXCLUDE payment processors (Stripe, PayPal)
+     if you run a business - those carry revenue notifications you want to see. -->
+<apps:property name='hasTheWord' value='from:(YOURBANK.com OR YOURCARD.com)'/>
+<apps:property name='doesNotHaveTheWord' value='is:starred OR "security alert" OR "new sign-in" OR "password reset" OR "verification code" OR suspicious OR "was declined" OR "credit limit" OR "past due" OR "payment failed" OR invoice OR fraud OR "unusual activity"'/>
+<apps:property name='shouldArchive' value='true'/>
+<apps:property name='shouldMarkAsRead' value='true'/>
+</entry>
+
+<entry><category term='filter'></category><title>Auto-archive receipts</title>
+<apps:property name='hasTheWord' value='subject:(receipt OR "order confirmation" OR "your order" OR "payment received")'/>
+<apps:property name='doesNotHaveTheWord' value='is:starred OR "past due" OR "payment failed" OR "action required" OR refund OR dispute'/>
+<apps:property name='shouldArchive' value='true'/>
+<apps:property name='shouldMarkAsRead' value='true'/>
+</entry>
+
+<entry><category term='filter'></category><title>Auto-archive purchases</title>
+<apps:property name='hasTheWord' value='category:purchases'/>
+<apps:property name='doesNotHaveTheWord' value='is:starred OR "action required" OR "delivery problem" OR "could not be delivered" OR refund OR dispute OR "past due"'/>
+<apps:property name='shouldArchive' value='true'/>
+<apps:property name='shouldMarkAsRead' value='true'/>
+</entry>
+
+<entry><category term='filter'></category><title>Auto-archive tools and infra</title>
+<apps:property name='hasTheWord' value='from:(github.com OR vercel.com OR cloudflare.com OR zoom.us)'/>
+<apps:property name='doesNotHaveTheWord' value='is:starred OR "security alert" OR "new sign-in" OR "password reset" OR "verification code" OR failed OR "action required" OR expiring OR expired OR "past due" OR invoice OR suspended'/>
+<apps:property name='shouldArchive' value='true'/>
+<apps:property name='shouldMarkAsRead' value='true'/>
+</entry>
+
+</feed>

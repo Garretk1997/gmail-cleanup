@@ -1,0 +1,10 @@
+# Never commit personal filter configs or credentials
+my-filters/
+*.local.xml
+credentials.json
+token.json
+.env
+*.eml
+raw/
+__pycache__/
+*.pyc
