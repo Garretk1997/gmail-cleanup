@@ -13,8 +13,8 @@
 </entry>
 
 <entry><category term='filter'></category><title>Banking</title>
-<!-- EDIT: replace with your own banks / card issuers -->
-<apps:property name='hasTheWord' value='from:(YOURBANK.com OR YOURCARD.com OR paypal.com OR stripe.com)'/>
+<!-- Ships with the major US banks/issuers. Add or remove to taste. -->
+<apps:property name='hasTheWord' value='from:(chase.com OR bankofamerica.com OR wellsfargo.com OR citi.com OR capitalone.com OR usbank.com OR pnc.com OR truist.com OR americanexpress.com OR discover.com OR ally.com OR schwab.com OR fidelity.com OR sofi.com OR synchronybank.com OR navyfederal.org OR paypal.com OR stripe.com)'/>
 <apps:property name='label' value='💰 Money/Banking'/>
 <apps:property name='shouldNeverSpam' value='true'/>
 </entry>

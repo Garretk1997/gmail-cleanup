@@ -8,7 +8,7 @@
 <entry><category term='filter'></category><title>Auto-archive banking</title>
 <!-- EDIT the from:() list. Deliberately EXCLUDE payment processors (Stripe, PayPal)
      if you run a business - those carry revenue notifications you want to see. -->
-<apps:property name='hasTheWord' value='from:(YOURBANK.com OR YOURCARD.com)'/>
+<apps:property name='hasTheWord' value='from:(chase.com OR bankofamerica.com OR wellsfargo.com OR citi.com OR capitalone.com OR usbank.com OR pnc.com OR truist.com OR americanexpress.com OR discover.com OR ally.com OR schwab.com OR fidelity.com OR sofi.com OR synchronybank.com OR navyfederal.org)'/>
 <apps:property name='doesNotHaveTheWord' value='is:starred OR "security alert" OR "new sign-in" OR "password reset" OR "verification code" OR suspicious OR "was declined" OR "credit limit" OR "past due" OR "payment failed" OR invoice OR fraud OR "unusual activity"'/>
 <apps:property name='shouldArchive' value='true'/>
 <apps:property name='shouldMarkAsRead' value='true'/>

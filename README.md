@@ -33,36 +33,59 @@ Ordering matters. Lane 1 before Lane 2 is the whole trick.
 
 ---
 
-## Quick start
+## Quick start (about 10 minutes, no install)
 
-### 1. Import the filters
+Everything below runs in your browser. No Cloud Console project, no OAuth client,
+no `pip install`, no credentials on disk.
+
+### Step 1 — create the labels (2 min)
+
+The filters apply labels, so the labels have to exist first.
+
+Go to [script.google.com](https://script.google.com) → **New project** → paste
+[`scripts/setup-labels.gs`](scripts/setup-labels.gs) → **Run** → approve the
+one-time prompt (it's your own account). Creates all 17 labels. Safe to re-run.
+
+### Step 2 — import the filters (3 min)
 
 Gmail → **Settings → Filters and Blocked Addresses → Import filters**.
 
-Import in order, and tick **"Apply new filters to existing email"** — that single
-checkbox creates the rules *and* does the retroactive cleanup in one action.
+Import in this order, and tick **"Apply new filters to existing email"** — that
+one checkbox creates the rules *and* does the retroactive cleanup in a single
+action.
 
-```
-filters/01-protect.xml        # label only, never archive — import FIRST
-filters/02-junk-archive.xml   # archive + mark read, with guards
-filters/03-auto-archive.xml   # optional: stop the inbox rebuilding
-```
+| File | What it does |
+|---|---|
+| [`filters/01-protect.xml`](filters/01-protect.xml) | Labels money, security, job applications, tools. **Never archives.** Import first. |
+| [`filters/02-junk-archive.xml`](filters/02-junk-archive.xml) | Archives Promotions, Social, Forums, job-alert digests, and the Updates remainder. |
+| [`filters/03-auto-archive.xml`](filters/03-auto-archive.xml) | *Optional.* Keeps the inbox from slowly rebuilding. |
 
-Edit the `from:(...)` lists first — they ship with `YOURBANK.com` placeholders.
+These ship working out of the box — the banking rules already cover the major US
+banks and card issuers. Open the XML and edit the `from:(...)` lists if yours
+isn't there, or to add your own tools and clients.
 
-### 2. Unsubscribe from the worst offenders
+### Step 3 — unsubscribe from the worst offenders (5 min)
 
-```bash
-python3 scripts/unsubscribe.py --dry-run raw/   # always dry-run first
-python3 scripts/unsubscribe.py raw/
-```
+[script.google.com](https://script.google.com) → **New project** → paste
+[`scripts/unsubscribe.gs`](scripts/unsubscribe.gs) → **Run**.
 
-Stdlib only, no dependencies. See the script header for how to get raw messages.
+It ships with `DRY_RUN = true`, so the first run only *reports* what it would do.
+Read the log, then set `DRY_RUN = false` and run again.
 
-### 3. Bulk-sweep the backlog
+It reads the RFC 8058 `List-Unsubscribe` header off your own mail and fires a
+single POST per sender — no clicking, no browser automation, server-confirmed.
+
+> Prefer the command line, or already have `.eml` files?
+> [`scripts/unsubscribe.py`](scripts/unsubscribe.py) does the same thing offline
+> (stdlib only, no dependencies).
+
+### Step 4 — clear the backlog
 
 The retroactive filter pass is best-effort and caps out on very large sets. For
-the rest, see `scripts/gmail-bulk-sweep.js`.
+whatever's left, see [`scripts/gmail-bulk-sweep.js`](scripts/gmail-bulk-sweep.js).
+
+> **Unsubscribe before you delete.** Gmail's unsubscribe acts on a message in
+> your mailbox — trash the backlog first and there's nothing left to act on.
 
 ---
 
@@ -125,7 +148,9 @@ filters/
   02-junk-archive.xml    Promotions, Social, Forums, job-alert digests, Updates remainder.
   03-auto-archive.xml    Optional: keep the inbox from rebuilding.
 scripts/
-  unsubscribe.py         RFC 8058 one-click bulk unsubscribe. Stdlib only.
+  setup-labels.gs        Apps Script: create the label tree. Run this first.
+  unsubscribe.gs         Apps Script: RFC 8058 bulk unsubscribe. No credentials.
+  unsubscribe.py         Same, offline, from .eml files. Stdlib only.
   gmail-bulk-sweep.js    Browser-console bulk archive/delete.
 ```
 
